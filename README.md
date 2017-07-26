@@ -19,7 +19,7 @@ Initially looked at the following:
 
 Libraries 3. to 5. add more than the basic requirements, but also don't work on Linux. 6. requires OSGi.
 
-## `docking1.Demo1`:
+## docking1.Demo1:
 
 With either Java 8 or Java 8, run as
 ```
@@ -33,7 +33,7 @@ In this demo, starting to drag a tab opens a new stage to represent the outline 
 That new stage takes the focus, so one needs to try dragging the same tab again(!) to move the stage.
 Not further developed.
 
-## `docking2.Demo2`:
+## docking2.Demo2:
 
 With either Java 8 or Java 8, run as
 ```
