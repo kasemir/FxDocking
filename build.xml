@@ -1,0 +1,29 @@
+<project name="Docking" default="demo2" basedir=".">
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="bin" location="bin"/>
+
+  <target name="init">
+    <mkdir dir="${bin}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${src}" destdir="${bin}"/>
+  </target>
+
+  <target name="demo1" depends="compile">
+    <java classname="docking1.Demo1"
+          classpath="${bin}"
+          fork="true"/>
+  </target>
+  
+  <target name="demo2" depends="compile">
+    <java classname="docking2.Demo2"
+          classpath="${bin}"
+          fork="true"/>
+  </target>
+  
+  <target name="clean">
+    <delete dir="${bin}"/>
+  </target>
+</project>
