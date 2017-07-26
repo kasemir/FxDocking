@@ -11,7 +11,7 @@ Goal is very basic support for "Tabs" similar to a web browser:
 Initially looked at the following:
 
 1. https://bugs.openjdk.java.net/browse/JDK-8092098: JavaFX might eventually get docking support, "targeted JDK10", but not, yet
-2. http://berry120.blogspot.co.uk/2014/01/draggable-and-detachable-tabs-in-javafx.html is a very compact example, in principle has just what's needed
+2. http://berry120.blogspot.co.uk/2014/01/draggable-and-detachable-tabs-in-javafx.html is a very compact example, in principle has just what's needed, but doesn't work on Linux
 3. https://github.com/alexbodogit/AnchorFX
 4. https://github.com/RobertBColton/DockFX
 5. https://github.com/andy-goryachev/FxDock
