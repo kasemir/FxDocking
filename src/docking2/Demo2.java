@@ -47,6 +47,7 @@ public class Demo2 extends Application
             //com.apple.eawt.Application.getApplication().setDockIconImage(..);
             final Class<?> clazz = Class.forName("com.apple.eawt.Application");
             Method method = clazz.getMethod("getApplication");
+            method.setAccessible(true);
             final Object app = method.invoke(clazz);
             method = app.getClass().getMethod("setDockIconImage", java.awt.Image.class);
             method.invoke(app, new ImageIcon("icons/logo.png").getImage());
