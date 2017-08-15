@@ -7,7 +7,10 @@
  *******************************************************************************/
 package docking2;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
+
+import javax.swing.ImageIcon;
 
 import javafx.application.Application;
 import javafx.scene.control.Label;
@@ -38,7 +41,24 @@ public class Demo2 extends Application
     @Override
     public void start(final Stage stage)
     {
-            // Add dock items to the original stage
+        // Set Mac OS X application image.
+        try
+        {   // Use introspection to call this without direct dependency:
+            //com.apple.eawt.Application.getApplication().setDockIconImage(..);
+            final Class<?> clazz = Class.forName("com.apple.eawt.Application");
+            Method method = clazz.getMethod("getApplication");
+            final Object app = method.invoke(clazz);
+            method = app.getClass().getMethod("setDockIconImage", java.awt.Image.class);
+            method.invoke(app, new ImageIcon("icons/logo.png").getImage());
+        }
+        catch (Exception ex)
+        {
+            // Ignore, not on Mac
+            // ex.printStackTrace();
+        }
+
+
+        // Add dock items to the original stage
         final DockItem tab1 = new DockItem("Tab 1");
         final BorderPane layout = new BorderPane();
         layout.setTop(new Label("Top"));

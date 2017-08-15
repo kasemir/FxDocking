@@ -30,30 +30,30 @@ import javafx.stage.Stage;
  */
 public class DockPane extends TabPane
 {
-	/** Logger for all docking related messages */
-	public static final Logger logger = Logger.getLogger(DockPane.class.getName());
+    /** Logger for all docking related messages */
+    public static final Logger logger = Logger.getLogger(DockPane.class.getName());
 
-	private DockPane(final DockItem... tabs)
-	{
-		super(tabs);
+    private DockPane(final DockItem... tabs)
+    {
+        super(tabs);
 
-		// Allow dropping a DockItem
-		setOnDragOver(this::handleDragOver);
-		setOnDragEntered(this::handleDragEntered);
-		setOnDragExited(this::handleDragExited);
-		setOnDragDropped(this::handleDrop);
-	}
+        // Allow dropping a DockItem
+        setOnDragOver(this::handleDragOver);
+        setOnDragEntered(this::handleDragEntered);
+        setOnDragExited(this::handleDragExited);
+        setOnDragDropped(this::handleDrop);
+    }
 
-	/** Helper to configure a Stage for docking
-	 *
-	 *  <p>Adds a Scene with one DockPane
-	 *
-	 *  @param stage Stage, should be empty
-	 *  @param tabs Zero or more initial {@link DockItem}s
-	 *  @throws Exception on error
-	 */
-	public static void configureStage(final Stage stage, final DockItem... tabs)
-	{
+    /** Helper to configure a Stage for docking
+     *
+     *  <p>Adds a Scene with one DockPane
+     *
+     *  @param stage Stage, should be empty
+     *  @param tabs Zero or more initial {@link DockItem}s
+     *  @throws Exception on error
+     */
+    public static void configureStage(final Stage stage, final DockItem... tabs)
+    {
         final DockPane tab_pane = new DockPane(tabs);
 
         final StackPane stack_pane = new StackPane();
@@ -65,59 +65,59 @@ public class DockPane extends TabPane
         stage.setTitle("ZINC");
         try
         {
-        	stage.getIcons().add(new Image(new FileInputStream("icons/zinc.png")));
+            stage.getIcons().add(new Image(new FileInputStream("icons/zinc.png")));
         }
         catch (Exception ex)
         {
-        	logger.log(Level.WARNING, "Cannot set application icon", ex);
+            logger.log(Level.WARNING, "Cannot set application icon", ex);
         }
         stage.show();
-	}
+    }
 
 
-	/** Accept dock items */
-	private void handleDragOver(final DragEvent event)
-	{
-		if (DockItem.dragged_item.get() != null)
-			event.acceptTransferModes(TransferMode.MOVE);
-		event.consume();
-	}
+    /** Accept dock items */
+    private void handleDragOver(final DragEvent event)
+    {
+        if (DockItem.dragged_item.get() != null)
+            event.acceptTransferModes(TransferMode.MOVE);
+        event.consume();
+    }
 
-	/** Highlight while 'drop' is possible */
-	private void handleDragEntered(final DragEvent event)
-	{
-		if (DockItem.dragged_item.get() != null)
-			setBorder(DockItem.DROP_ZONE_BORDER);
-		event.consume();
-	}
+    /** Highlight while 'drop' is possible */
+    private void handleDragEntered(final DragEvent event)
+    {
+        if (DockItem.dragged_item.get() != null)
+            setBorder(DockItem.DROP_ZONE_BORDER);
+        event.consume();
+    }
 
-	/** Remove Highlight */
-	private void handleDragExited(final DragEvent event)
-	{
-		setBorder(Border.EMPTY);
-		event.consume();
-	}
+    /** Remove Highlight */
+    private void handleDragExited(final DragEvent event)
+    {
+        setBorder(Border.EMPTY);
+        event.consume();
+    }
 
-	/** Accept a dropped tab */
-	private void handleDrop(final DragEvent event)
-	{
-		final DockItem item = DockItem.dragged_item.get();
-		if (item == null)
-			System.err.println("Empty drop?");
-		else
-		{
-			final TabPane old_parent = item.getTabPane();
+    /** Accept a dropped tab */
+    private void handleDrop(final DragEvent event)
+    {
+        final DockItem item = DockItem.dragged_item.get();
+        if (item == null)
+            System.err.println("Empty drop?");
+        else
+        {
+            final TabPane old_parent = item.getTabPane();
 
-			// Unexpected, but would still "work" at this time
-			if (! (old_parent instanceof DockPane))
-				System.err.println("DockItem is not in DockPane");
+            // Unexpected, but would still "work" at this time
+            if (! (old_parent instanceof DockPane))
+                System.err.println("DockItem is not in DockPane");
 
-			old_parent.getTabs().remove(item);
-			getTabs().add(item);
-			// Select the new item
-			getSelectionModel().select(item);
-		}
-		event.setDropCompleted(true);
-		event.consume();
-	}
+            old_parent.getTabs().remove(item);
+            getTabs().add(item);
+            // Select the new item
+            getSelectionModel().select(item);
+        }
+        event.setDropCompleted(true);
+        event.consume();
+    }
 }

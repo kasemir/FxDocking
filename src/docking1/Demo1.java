@@ -41,74 +41,74 @@ import javafx.stage.StageStyle;
  */
 public class Demo1 extends Application
 {
-	public static void main(String[] args)
+    public static void main(String[] args)
     {
         launch(args);
     }
 
-	/** Representation of a 'Tab' that's being dragged */
-	static class DraggedTab extends Stage
-	{
-		public DraggedTab(final DraggableTab tab)
-		{
-			initModality(Modality.NONE);
-			initStyle(StageStyle.UNDECORATED);
-			setAlwaysOnTop(true);
-			setOpacity(0.5);
-			final Bounds bounds = tab.getTabPane().getLayoutBounds();
-			setWidth(bounds.getWidth());
-			setHeight(bounds.getHeight());
-			show();
-		}
-	}
+    /** Representation of a 'Tab' that's being dragged */
+    static class DraggedTab extends Stage
+    {
+        public DraggedTab(final DraggableTab tab)
+        {
+            initModality(Modality.NONE);
+            initStyle(StageStyle.UNDECORATED);
+            setAlwaysOnTop(true);
+            setOpacity(0.5);
+            final Bounds bounds = tab.getTabPane().getLayoutBounds();
+            setWidth(bounds.getWidth());
+            setHeight(bounds.getHeight());
+            show();
+        }
+    }
 
-	/** Representation of tab that's currently being dragged */
-	private DraggedTab dragged_tab = null;
+    /** Representation of tab that's currently being dragged */
+    private DraggedTab dragged_tab = null;
 
-	class DraggableTab extends Tab
-	{
-		private final Label tab_name;
+    class DraggableTab extends Tab
+    {
+        private final Label tab_name;
 
-		public DraggableTab(final String label)
-		{
-			// Create tab with no 'text',
-			// instead using a Label for the text
-			// because the label can react to drag operations
-			tab_name = new Label(label);
-			setGraphic(tab_name);
+        public DraggableTab(final String label)
+        {
+            // Create tab with no 'text',
+            // instead using a Label for the text
+            // because the label can react to drag operations
+            tab_name = new Label(label);
+            setGraphic(tab_name);
 
 
-			tab_name.setOnMouseDragged(event ->
-			{
-				System.out.println("Drag " + tab_name.getText() + " to " + event.getScreenX() + ", " + event.getScreenY());
+            tab_name.setOnMouseDragged(event ->
+            {
+                System.out.println("Drag " + tab_name.getText() + " to " + event.getScreenX() + ", " + event.getScreenY());
 
-				if (dragged_tab == null)
-				{
-					dragged_tab = new DraggedTab(this);
-					tab_name.requestFocus();
-				}
-				dragged_tab.setX(event.getScreenX());
-				dragged_tab.setY(event.getScreenY());
+                if (dragged_tab == null)
+                {
+                    dragged_tab = new DraggedTab(this);
+                    tab_name.requestFocus();
+                }
+                dragged_tab.setX(event.getScreenX());
+                dragged_tab.setY(event.getScreenY());
 
-			});
+            });
 
-			tab_name.setOnMouseReleased(event ->
-			{
-				if (dragged_tab != null)
-				{
-					dragged_tab.close();
-					dragged_tab = null;
-					// TODO: Should now 'drop' the dragged tab
-				}
-			});
-		}
+            tab_name.setOnMouseReleased(event ->
+            {
+                if (dragged_tab != null)
+                {
+                    dragged_tab.close();
+                    dragged_tab = null;
+                    // TODO: Should now 'drop' the dragged tab
+                }
+            });
+        }
 
-		/** Label of the tab */
-		public String getLabel()
-		{
-			return tab_name.getText();
-		}
-	}
+        /** Label of the tab */
+        public String getLabel()
+        {
+            return tab_name.getText();
+        }
+    }
 
     @Override
     public void start(final Stage stage) throws Exception
