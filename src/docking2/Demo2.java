@@ -7,6 +7,8 @@
  *******************************************************************************/
 package docking2;
 
+import java.util.Arrays;
+
 import javafx.application.Application;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -20,15 +22,23 @@ import javafx.stage.Stage;
  */
 public class Demo2 extends Application
 {
-	public static void main(String[] args)
+    public static void main(String[] args)
     {
+        for (String prop : Arrays.asList("java.specification.name",
+                                         "java.specification.vendor",
+                                         "java.specification.version",
+                                         "java.home",
+                                         "java.runtime.name",
+                                         "java.runtime.version"))
+            System.out.println(prop + " = " + System.getProperty(prop));
+
         launch(args);
     }
 
     @Override
     public void start(final Stage stage)
     {
-    	// Add dock items to the original stage
+            // Add dock items to the original stage
         final DockItem tab1 = new DockItem("Tab 1");
         final BorderPane layout = new BorderPane();
         layout.setTop(new Label("Top"));
