@@ -63,19 +63,23 @@ public class Demo2 extends Application
         final DockItem tab1 = new DockItem("Tab 1");
         final BorderPane layout = new BorderPane();
         layout.setTop(new Label("Top"));
-        layout.setCenter(new Label("Center"));
+        layout.setCenter(new Label("Tab that indicates resize behavior"));
         layout.setBottom(new Label("Bottom"));
         tab1.setContent(layout);
 
         final DockItem tab2 = new DockItem("Tab 2");
         tab2.setContent(new Rectangle(500, 500, Color.RED));
 
+        // The DockPane is added to a stage by 'configuring' it.
+        // Initial tabs can be provided right away
+        DockPane tabs = DockPane.configureStage(stage, tab1, tab2);
+        stage.setX(100);
+        
+        // .. or tabs are added later
         final DockItem tab3 = new DockItem("Tab 3");
         tab3.setContent(new Rectangle(500, 500, Color.GRAY));
-
-        DockPane.configureStage(stage, tab1, tab2, tab3);
-        stage.setX(100);
-
+        tabs.addTab(tab3);
+        
         // Create another stage with more dock items
         final DockItem tab4 = new DockItem("Tab 4");
         tab4.setContent(new Rectangle(500, 500, Color.YELLOW));

@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 /** Pane that contains {@link DockItem}s
  *
  *  <p>Implemented as {@link TabPane},
- *  but this might change to only methods
+ *  but this might change so only methods
  *  declared in here should be invoked
  *
  *  @author Kay Kasemir
@@ -51,8 +51,10 @@ public class DockPane extends TabPane
      *  @param stage Stage, should be empty
      *  @param tabs Zero or more initial {@link DockItem}s
      *  @throws Exception on error
+     *  
+     *  @return {@link DockPane} that was added to the {@link Stage}
      */
-    public static void configureStage(final Stage stage, final DockItem... tabs)
+    public static DockPane configureStage(final Stage stage, final DockItem... tabs)
     {
         final DockPane tab_pane = new DockPane(tabs);
 
@@ -72,8 +74,15 @@ public class DockPane extends TabPane
             logger.log(Level.WARNING, "Cannot set application icon", ex);
         }
         stage.show();
+        
+        return tab_pane;
     }
-
+    
+    /** @param tabs One or more tabs to add */
+    public void addTab(final DockItem... tabs)
+    {
+		getTabs().addAll(tabs);
+    }
 
     /** Accept dock items */
     private void handleDragOver(final DragEvent event)
