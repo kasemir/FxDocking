@@ -17,7 +17,7 @@ Initially looked at the following:
 5. https://github.com/andy-goryachev/FxDock
 6. http://www.drombler.org/drombler-fx
 
-Libraries 3. to 5. add more than the basic requirements, but also don't work on Linux. 6. requires OSGi.
+Libraries 3. to 5. add more than the basic requirements, but may not work on Linux depending on your window manager. 6. requires OSGi.
 
 ## docking1.Demo1:
 
