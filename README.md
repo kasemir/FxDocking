@@ -14,14 +14,13 @@ Initially looked at the following:
 2. http://berry120.blogspot.co.uk/2014/01/draggable-and-detachable-tabs-in-javafx.html is a very compact example, in principle has just what's needed, but doesn't work on Linux
 3. https://github.com/alexbodogit/AnchorFX
 4. https://github.com/RobertBColton/DockFX
-5. https://github.com/andy-goryachev/FxDock
-6. http://www.drombler.org/drombler-fx
+5. http://www.drombler.org/drombler-fx
 
-Libraries 3. to 5. add more than the basic requirements, but may not work on Linux depending on your window manager. 6. requires OSGi.
+Libraries 3. to 4. add more than the basic requirements, but may not work on Linux depending on your window manager. 5. requires OSGi.
 
 ## docking1.Demo1:
 
-With either Java 8 or Java 8, run as
+With either Java 8 or Java 9, run as
 ```
 ant demo1
 ```
@@ -35,7 +34,7 @@ Not further developed.
 
 ## docking2.Demo2:
 
-With either Java 8 or Java 8, run as
+With either Java 8 or Java 9, run as
 ```
 ant demo2
 ```
