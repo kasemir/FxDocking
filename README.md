@@ -1,6 +1,9 @@
 # FxDocking
 
-Experiments with "Docking" for JavaFX.
+Initial experiments with "Docking" for JavaFX.
+Eventually turned into `core.ui.docking` package of 
+https://github.com/ControlSystemStudio/phoebus
+
 
 Goal is very basic support for "Tabs" similar to a web browser:
  * One or more tabs
